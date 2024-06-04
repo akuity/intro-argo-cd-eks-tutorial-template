@@ -1,5 +1,5 @@
 #!/bin/bash
-workspace="/workspaces/intro-argo-cd-tutorial"
+workspace="/workspaces/$(basename ${GITHUB_REPOSITORY})"
 
 ## Check to see if you're in the right path
 ## This protects against updating the template while working on the template repo.
@@ -9,19 +9,17 @@ if [[ ! -d ${workspace} ]] ; then
     exit 3
 fi
 
-## Check to see if the ${GITHUB_USER} env is set (best effort)
+## Check to see if the ${GITHUB_REPOSITORY} env is set (best effort)
 ## TODO: This will fail if users are doing this "outside" of GitHub. Need a way to "normalize it"
-if [[ ${#GITHUB_USER} -eq 0 ]] ; then
-    echo "FATAL: The GITHUB_USER env var is not set"
+if [[ -z ${GITHUB_REPOSITORY} ]] ; then
+    echo "FATAL: The GITHUB_REPOSITORY env var is not set"
     exit 3
 fi
 
-## Search for <username> and replace it with 
-find ${workspace} -type f -exec grep -l '<username>' {} \; | while read file
+## Search for <repo> and replace it with 
+find ${workspace} -name '*.yaml' -type f -exec grep -l '<repo>' {} \; | while read file
 do
-    ## Let's ignore this script
-    [[ ${file} == ${workspace}/.hack/update-repo-for-workshop.sh ]] && continue
-    sed -i "s/<username>/${GITHUB_USER}/g" ${file}
+    sed -i "s?<repo>?${GITHUB_REPOSITORY}?g" ${file}
 done
 
 ## Now that the files are updated, we commit it and push it up. Best effort :cross_fingers_emoji:
