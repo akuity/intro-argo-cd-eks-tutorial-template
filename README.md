@@ -1,4 +1,4 @@
-# Introduction to Argo CD Template
+# Introduction to Argo CD using EKS (Template)
 
 These are the supporting files for [the Introduction to Argo CD tutorial](https://docs.akuity.io/tutorials/intro-to-argo-cd/) in the Akuity docs.
 
