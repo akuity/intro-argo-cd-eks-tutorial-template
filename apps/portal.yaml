@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portal
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/<username>/intro-argo-cd-tutorial'
+    path: portal
+    targetRevision: HEAD
+  destination:
+    namespace: portal
+    name: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
