@@ -1,7 +1,9 @@
 {
 	"name": "workshop-environment",
-	"image": "quay.io/akuity/argo-cd-learning-assets/akuity-devcontainer:0.2.3",
-
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {
 			"enableNonRootDocker": "true",
