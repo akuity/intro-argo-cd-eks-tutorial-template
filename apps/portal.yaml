@@ -11,7 +11,7 @@ spec:
     targetRevision: HEAD
   destination:
     namespace: portal
-    name: dev
+    name: eks
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

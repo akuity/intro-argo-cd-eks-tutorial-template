@@ -14,7 +14,7 @@ spec:
         - values-stg.yaml
   destination:
     namespace: guestbook-stg
-    name: dev
+    name: eks
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
